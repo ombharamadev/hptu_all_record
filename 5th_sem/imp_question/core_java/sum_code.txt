@@ -1,0 +1,91 @@
+package com.pizzalelo.jframetest;
+
+//import
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+
+//class
+public class Jframetest{
+    //main function
+    public static void main(String[] args){
+        
+        //defile variable
+        
+        JLabel label_a , label_b , label_sum,label_sum_val;
+        JTextField field_a, field_b;
+        JButton but_sum , but_reset;
+        
+        JFrame frame_main = new JFrame("Sum");
+        
+        
+        //createing a panel
+        JPanel panel_main = new JPanel();
+        panel_main.setLayout(new GridLayout(4,2));
+        
+        
+        //label a and textfield
+        label_a = new JLabel("First Number");
+        label_b = new JLabel("Sec Number");
+        label_sum = new JLabel("Sum");
+        label_sum_val = new JLabel("0");
+        
+        //text field
+        field_a = new JTextField(10);
+        field_b = new JTextField(10);
+        
+        //button 
+        but_sum = new JButton("Sum");
+        but_reset = new JButton("Clear");
+        
+        //addign in panel with laytout
+        panel_main.add(label_a);
+        panel_main.add(field_a);
+        panel_main.add(label_b);
+        panel_main.add(field_b);
+        panel_main.add(label_sum);
+        panel_main.add(label_sum_val);
+        panel_main.add(but_sum);
+        panel_main.add(but_reset);
+        
+        //action lister
+        but_sum.addActionListener(new ActionListener (){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cal_sum(field_a,field_b,label_sum_val);
+            }
+        });
+        
+        
+        //clear reset
+        
+        but_reset.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                clear_sum(field_a,field_b,label_sum_val);
+            }
+        });
+        //admign panel to frame
+        frame_main.add(panel_main);
+        frame_main.setSize(500,600);
+        frame_main.setVisible(true);
+        
+    }
+    
+    public static void clear_sum(JTextField field_a, JTextField field_b, JLabel label_sum){
+        field_a.setText("0");
+        field_b.setText("0");
+        label_sum.setText("0");
+    }
+    
+    public static void cal_sum(JTextField field_a, JTextField field_b,JLabel label_sum){
+        int a = Integer.valueOf(field_a.getText());
+        int b = Integer.valueOf(field_b.getText());
+        int sum = a +b;
+        label_sum.setText(String.valueOf(sum));
+        
+    }
+}
